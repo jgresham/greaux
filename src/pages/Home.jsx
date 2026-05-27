@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import GreauxLogo from '../components/GreauxLogo';
 
 const companies = [
   {
@@ -125,15 +126,17 @@ export default function Home() {
         background: 'linear-gradient(180deg, rgba(232,255,71,0.03) 0%, transparent 100%)',
       }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{
-            fontSize: 'clamp(36px, 6vw, 56px)',
-            fontWeight: 800,
-            color: 'var(--text)',
-            letterSpacing: '-0.04em',
-            lineHeight: 1,
-            marginBottom: 14,
-          }}>
-            greaux
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 14 }}>
+            <GreauxLogo size={52} />
+            <div style={{
+              fontSize: 'clamp(36px, 6vw, 56px)',
+              fontWeight: 800,
+              color: 'var(--text)',
+              letterSpacing: '-0.04em',
+              lineHeight: 1,
+            }}>
+              greaux
+            </div>
           </div>
           <p style={{
             fontSize: 15,

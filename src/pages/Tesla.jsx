@@ -54,16 +54,23 @@ export default function TeslaPage() {
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
             <div>
               <div style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
+                display: 'inline-flex', alignItems: 'center', gap: 8,
                 fontSize: 11, fontFamily: 'var(--mono)',
                 color: 'var(--accent)',
                 border: '1px solid rgba(232,255,71,0.25)',
                 borderRadius: 100,
-                padding: '3px 10px',
+                padding: '5px 12px',
                 marginBottom: 10,
                 letterSpacing: '0.06em',
               }}>
-                ◆ TSLA · INTERACTIVE PROJECTION MODEL
+                {/* Tesla T logo */}
+                <svg viewBox="0 0 200 260" width="10" height="13" aria-hidden="true">
+                  <path
+                    d="M100 10 C88 10,52 17,4 30 L8 44 C30 37,58 33,88 33 L88 240 L112 240 L112 33 C142 33,170 37,192 44 L196 30 C148 17,112 10,100 10 Z"
+                    fill="#E31937"
+                  />
+                </svg>
+                TSLA · INTERACTIVE PROJECTION MODEL
               </div>
               <h1 style={{
                 fontSize: 'clamp(24px, 4vw, 36px)',
