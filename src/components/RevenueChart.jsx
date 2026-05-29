@@ -38,7 +38,7 @@ export default function RevenueChart({ projections }) {
     if (!canvasRef.current) return;
     if (chartRef.current) chartRef.current.destroy();
 
-    const { autoFull, energyFull, svcFull, roboFull } = projections;
+    const { autoFull, energyFull, svcFull, roboFull, optimusFull } = projections;
     const labels = YEARS.map(y => y >= 2025 ? `${y}*` : String(y));
 
     chartRef.current = new Chart(canvasRef.current, {
@@ -50,6 +50,7 @@ export default function RevenueChart({ projections }) {
           ...makeDatasets(energyFull, SEGMENT_COLORS.energy, SEGMENT_LABELS.energy, HIST_COUNT),
           ...makeDatasets(svcFull,    SEGMENT_COLORS.svc,    SEGMENT_LABELS.svc,    HIST_COUNT),
           ...makeDatasets(roboFull,   SEGMENT_COLORS.robo,   SEGMENT_LABELS.robo,   HIST_COUNT),
+          ...makeDatasets(optimusFull, SEGMENT_COLORS.optimus, SEGMENT_LABELS.optimus, HIST_COUNT),
         ],
       },
       options: {

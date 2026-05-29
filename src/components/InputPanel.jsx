@@ -238,6 +238,47 @@ export default function InputPanel({ params, onChange }) {
         />
       </SectionCard>
 
+      <SectionCard icon="🦾" title="Optimus">
+        <NumberField
+          label="Robots sold in 2027"
+          value={params.optimusSold2027 / 1_000}
+          step={5}
+          suffix="k robots"
+          tooltip={TOOLTIPS.optimusRobots}
+          onChange={val => set('optimusSold2027')(val * 1_000)}
+        />
+        <NumberField
+          label="Robots sold in 2028"
+          value={params.optimusSold2028 / 1_000}
+          step={10}
+          suffix="k robots"
+          onChange={val => set('optimusSold2028')(val * 1_000)}
+        />
+        <NumberField
+          label="Robots sold in 2029"
+          value={params.optimusSold2029 / 1_000}
+          step={25}
+          suffix="k robots"
+          onChange={val => set('optimusSold2029')(val * 1_000)}
+        />
+        <NumberField
+          label="Avg price per robot"
+          value={params.optimusASP / 1_000}
+          step={1}
+          suffix="k USD / robot"
+          tooltip={TOOLTIPS.optimusASP}
+          onChange={val => set('optimusASP')(val * 1_000)}
+        />
+        <SliderField
+          label="Net margin"
+          id="optimusMargin"
+          value={params.optimusMargin}
+          min={0} max={60}
+          tooltip={TOOLTIPS.margin}
+          onChange={set('optimusMargin')}
+        />
+      </SectionCard>
+
       <SectionCard icon="💰" title="Valuation">
         <MethodToggle value={params.valuationMethod} onChange={set('valuationMethod')} />
         {params.valuationMethod === 'ps' ? (

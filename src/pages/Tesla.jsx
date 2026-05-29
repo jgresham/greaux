@@ -5,10 +5,17 @@ import RevenueChart from '../components/RevenueChart';
 import EarningsChart from '../components/EarningsChart';
 import InputPanel from '../components/InputPanel';
 import ChartLegend from '../components/ChartLegend';
-import { buildProjections, DEFAULTS, TOOLTIPS } from '../data';
+import CollapsibleSection from '../components/CollapsibleSection';
+import InsightBarChart from '../components/InsightBarChart';
+import InsightCard from '../components/InsightCard';
+import PageMeta, { PAGE_META } from '../components/PageMeta';
+import { buildProjections, DEFAULTS, OPERATING_METRICS, SEGMENT_COLORS, TOOLTIPS } from '../data';
 
 const fmt = (n, decimals = 0) =>
   new Intl.NumberFormat('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(n);
+
+const fmtValuation = valueB =>
+  valueB >= 1000 ? `$${fmt(valueB / 1000, 2)}T` : `$${fmt(valueB, 0)}B`;
 
 export default function TeslaPage() {
   const [params, setParams] = useState(DEFAULTS);
@@ -19,7 +26,9 @@ export default function TeslaPage() {
   const mktCapT = proj.marketCapB / 1000;
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <>
+      <PageMeta {...PAGE_META.tesla} />
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Back nav */}
       <div style={{
         borderBottom: '1px solid var(--border)',
@@ -108,8 +117,10 @@ export default function TeslaPage() {
         }}>
           <MetricCard label="2024 Revenue" value={`$${fmt(proj.total2024, 1)}B`} sub="Actual · all segments" accent="var(--blue)" />
           <MetricCard label="2029 Projected" value={`$${fmt(proj.total2029, 1)}B`} sub="Based on your assumptions" accent="var(--accent)" tooltip={TOOLTIPS.total2029} />
+          <MetricCard label="2029 Valuation" value={fmtValuation(proj.marketCapB)} sub={params.valuationMethod === 'ps' ? `${params.psRatio}x revenue` : `${params.peRatio}x earnings`} accent="var(--amber)" tooltip={TOOLTIPS.sharePrice} />
           <MetricCard label="5-Year CAGR" value={`${fmt(proj.cagr5y, 1)}%`} sub="2024 → 2029" accent="var(--green)" tooltip={TOOLTIPS.cagr} />
           <MetricCard label="Robotaxi 2029" value={`$${fmt(proj.roboFull[9], 1)}B`} sub="Platform revenue" accent="var(--pink)" />
+          <MetricCard label="Optimus 2029" value={`$${fmt(proj.optimusFull[9], 1)}B`} sub="Humanoid revenue" accent={SEGMENT_COLORS.optimus} />
         </div>
 
         {/* Prominent share price projection */}
@@ -215,37 +226,84 @@ export default function TeslaPage() {
           <EarningsChart projections={proj} />
         </div>
 
-        {/* Input controls */}
-        <div style={{ marginBottom: '1rem' }}>
-          <h2 style={{
-            fontSize: 13, fontFamily: 'var(--mono)',
-            color: 'var(--text3)', textTransform: 'uppercase',
-            letterSpacing: '0.08em', marginBottom: '1rem',
-          }}>
-            ↓ Adjust projection assumptions
-          </h2>
+        <CollapsibleSection
+          eyebrow="Scenario controls"
+          title="Adjust projection assumptions"
+          description="Growth rates, margins, Robotaxi, Optimus, and valuation inputs."
+          accent="var(--accent)"
+        >
           <InputPanel params={params} onChange={setParams} />
-        </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
+            <button
+              onClick={() => setParams(DEFAULTS)}
+              style={{
+                background: 'transparent',
+                border: '1px solid var(--border2)',
+                color: 'var(--text2)',
+                fontSize: 13,
+                fontFamily: 'var(--mono)',
+                padding: '8px 16px',
+                borderRadius: 'var(--radius)',
+                cursor: 'pointer',
+                transition: 'border-color 0.2s, color 0.2s',
+              }}
+              onMouseEnter={e => { e.target.style.borderColor = 'var(--accent)'; e.target.style.color = 'var(--accent)'; }}
+              onMouseLeave={e => { e.target.style.borderColor = 'var(--border2)'; e.target.style.color = 'var(--text2)'; }}
+            >
+              Reset to defaults
+            </button>
+          </div>
+        </CollapsibleSection>
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1.25rem' }}>
-          <button
-            onClick={() => setParams(DEFAULTS)}
-            style={{
-              background: 'transparent',
-              border: '1px solid var(--border2)',
-              color: 'var(--text2)',
-              fontSize: 13,
-              fontFamily: 'var(--mono)',
-              padding: '8px 16px',
-              borderRadius: 'var(--radius)',
-              cursor: 'pointer',
-              transition: 'border-color 0.2s, color 0.2s',
-            }}
-            onMouseEnter={e => { e.target.style.borderColor = 'var(--accent)'; e.target.style.color = 'var(--accent)'; }}
-            onMouseLeave={e => { e.target.style.borderColor = 'var(--border2)'; e.target.style.color = 'var(--text2)'; }}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: 16,
+          marginBottom: '2rem',
+        }}>
+          <InsightCard
+            title="Vehicle deliveries"
+            subtitle="Reported annual deliveries, split by Tesla's Model 3/Y and Other Models groups."
           >
-            ↺ Reset to defaults
-          </button>
+            <InsightBarChart
+              labels={OPERATING_METRICS.years}
+              stacked
+              unit="M"
+              decimals={2}
+              ariaLabel="Tesla annual vehicle deliveries by product group from 2020 through 2025"
+              datasets={[
+                {
+                  label: 'Model 3/Y',
+                  data: OPERATING_METRICS.model3YDeliveriesM,
+                  backgroundColor: '#4da3ff',
+                },
+                {
+                  label: 'Other Models',
+                  data: OPERATING_METRICS.otherDeliveriesM,
+                  backgroundColor: '#ffb347',
+                },
+              ]}
+            />
+          </InsightCard>
+
+          <InsightCard
+            title="Energy storage deployments"
+            subtitle="Annual storage deployed in GWh, a useful scale marker for Tesla Energy."
+          >
+            <InsightBarChart
+              labels={OPERATING_METRICS.years}
+              unit=" GWh"
+              decimals={1}
+              ariaLabel="Tesla annual energy storage deployments in gigawatt-hours from 2020 through 2025"
+              datasets={[
+                {
+                  label: 'Storage deployed',
+                  data: OPERATING_METRICS.storageDeploymentsGWh,
+                  backgroundColor: '#3ddea0',
+                },
+              ]}
+            />
+          </InsightCard>
         </div>
       </main>
 
@@ -259,6 +317,7 @@ export default function TeslaPage() {
       }}>
         Not financial advice · Historical data from Tesla SEC filings · Built with React + Chart.js
       </footer>
-    </div>
+      </div>
+    </>
   );
 }

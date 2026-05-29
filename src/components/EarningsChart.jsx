@@ -38,7 +38,7 @@ export default function EarningsChart({ projections }) {
     if (!canvasRef.current) return;
     if (chartRef.current) chartRef.current.destroy();
 
-    const { autoEarnings, energyEarnings, svcEarnings, roboEarnings } = projections;
+    const { autoEarnings, energyEarnings, svcEarnings, roboEarnings, optimusEarnings } = projections;
     const labels = YEARS.map(y => y >= 2025 ? `${y}*` : String(y));
 
     chartRef.current = new Chart(canvasRef.current, {
@@ -50,6 +50,7 @@ export default function EarningsChart({ projections }) {
           ...makeDatasets(energyEarnings, SEGMENT_COLORS.energy, SEGMENT_LABELS.energy, HIST_COUNT),
           ...makeDatasets(svcEarnings,    SEGMENT_COLORS.svc,    SEGMENT_LABELS.svc,    HIST_COUNT),
           ...makeDatasets(roboEarnings,   SEGMENT_COLORS.robo,   SEGMENT_LABELS.robo,   HIST_COUNT),
+          ...makeDatasets(optimusEarnings, SEGMENT_COLORS.optimus, SEGMENT_LABELS.optimus, HIST_COUNT),
         ],
       },
       options: {

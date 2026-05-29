@@ -1,58 +1,96 @@
-# Tesla Revenue Dashboard
+# greaux
 
-An interactive revenue growth dashboard for Tesla, built with React + Vite + Chart.js.
+greaux is a company growth projection and visualization tool. It turns known operating history, segment assumptions, and scenario inputs into interactive dashboards for comparing how different growth drivers can shape future revenue, earnings, and operating scale.
+
+The app is built with React, Vite, and Chart.js.
+
+## Current Models
+
+- Tesla: revenue and earnings projections across Automotive, Energy & Storage, Services & Other, Robotaxi, and Optimus.
+- SpaceX: estimated revenue and earnings projections across Starlink, Launch Services, Government Systems, Dragon, and Starship.
 
 ## Features
 
-- Stacked bar chart: Automotive, Energy & Storage, Services, Robotaxi
-- 5 years historical (2020–2024) + 5-year projections (2025–2029)
-- Interactive sliders for CAGR assumptions per segment
-- Robotaxi ride volume and revenue-per-ride inputs
-- Live metric cards: 2024 actual, 2029 projected, 5Y CAGR, Robotaxi contribution
-- Tooltip info icons explaining financial terms like CAGR
+- Interactive company dashboards with charts, metric cards, assumptions, and explanatory context.
+- Segment-level modeling for revenue, margins, and contribution to projected outcomes.
+- Company-specific inputs for important growth drivers, such as Robotaxi rides, Optimus unit sales, and average selling price.
+- Source-oriented financial data stored under `financial-data/`.
+- SEO and sharing metadata for the landing page and company-specific pages.
+- Dark, compact dashboard UI optimized for scanning and scenario comparison.
 
-## Local development
+## Local Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Deploy to GitHub Pages
+The local Vite app is served with the `/greaux/` base path. Common local routes:
 
-### One-time setup
-
-1. Push this repo to GitHub
-2. Go to **Settings → Pages** in your repo
-3. Under **Source**, select **GitHub Actions**
-4. Push to `main` — `.github/workflows/deploy.yml` handles the rest
-
-Your site will be live at:
-```
-https://<your-username>.github.io/tesla-revenue-dashboard/
+```text
+http://127.0.0.1:5173/greaux/
+http://127.0.0.1:5173/greaux/#/tesla
+http://127.0.0.1:5173/greaux/#/spacex
 ```
 
-## Project structure
+## Build And Deploy
 
+Create a production build:
+
+```bash
+npm run build
 ```
+
+Deploy the built app to GitHub Pages via the configured `gh-pages` script:
+
+```bash
+npm run deploy
+```
+
+The configured production base path is `/greaux/`.
+
+## Project Structure
+
+```text
+financial-data/
+  spacex/
+    known-revenue-and-product-numbers.md
+  tsla-tesla/
+    known-revenue-and-product-numbers.md
+public/
+  og-greaux.svg
+  og-spacex.svg
+  og-tesla.svg
+  spacex/index.html
+  tesla/index.html
 src/
-  data.js                  # Historical data, projection logic, defaults
-  App.jsx                  # Root layout and state
+  App.jsx
+  data.js
   components/
-    RevenueChart.jsx        # Chart.js stacked bar chart
-    InputPanel.jsx          # Sliders + number inputs
-    MetricCard.jsx          # Summary metric cards
-    ChartLegend.jsx         # Custom chart legend
-    Tooltip.jsx             # Info icon with tooltip popup
+    ChartLegend.jsx
+    CollapsibleSection.jsx
+    EarningsChart.jsx
+    InputPanel.jsx
+    InsightBarChart.jsx
+    InsightCard.jsx
+    MetricCard.jsx
+    PageMeta.jsx
+    RevenueChart.jsx
+    Tooltip.jsx
+  pages/
+    Home.jsx
+    SpaceX.jsx
+    Tesla.jsx
 ```
 
-## Customizing for another company
+## Adding Another Company
 
-1. Edit `src/data.js` — swap `HISTORICAL` values and `DEFAULTS`
-2. Update `SEGMENT_LABELS` and `SEGMENT_COLORS`
-3. Adjust inputs in `InputPanel.jsx` to match that company's key drivers
-4. Update title/ticker in `App.jsx`
+Follow `agents/adding-a-company.md`. In short: add sourced financial data under `financial-data/`, create a company dashboard with revenue and profit charts, wire the route and landing-page card, and add company-specific SEO/share metadata.
 
-## Tech stack
+## Notes
 
-React 18 · Vite 5 · Chart.js 4 · GitHub Actions · GitHub Pages
+greaux is for scenario modeling and visualization. It is not financial advice, and projection outputs are only as reliable as the assumptions and source data behind them.
+
+## Tech Stack
+
+React 18 · Vite 5 · Chart.js 4 · GitHub Pages
