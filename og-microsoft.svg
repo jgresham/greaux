@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0a12"/>
+  <rect width="1200" height="3" fill="#00A4EF"/>
+  <text x="60" y="120" font-family="system-ui,sans-serif" font-size="36" font-weight="700" fill="#00A4EF" letter-spacing="2">MSFT · MICROSOFT MODEL</text>
+  <text x="60" y="220" font-family="system-ui,sans-serif" font-size="80" font-weight="800" fill="#f0eff8">Microsoft Revenue</text>
+  <text x="60" y="310" font-family="system-ui,sans-serif" font-size="80" font-weight="800" fill="#00A4EF">Growth Dashboard</text>
+  <text x="60" y="400" font-family="system-ui,sans-serif" font-size="28" fill="#5a5a72">FY2022–FY2024 actuals · Projected FY2025–FY2029 · greaux</text>
+  <rect x="60" y="480" width="60" height="60" rx="4" fill="#00A4EF" fill-opacity="0.4"/>
+  <rect x="140" y="440" width="60" height="100" rx="4" fill="#00A4EF" fill-opacity="0.6"/>
+  <rect x="220" y="390" width="60" height="150" rx="4" fill="#00A4EF" fill-opacity="0.8"/>
+  <rect x="300" y="320" width="60" height="220" rx="4" fill="#00A4EF"/>
+</svg>
