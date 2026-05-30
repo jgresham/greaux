@@ -10,6 +10,8 @@ import ApplePage from './pages/Apple';
 import MicrosoftPage from './pages/Microsoft';
 import GooglePage from './pages/Google';
 import AmazonPage from './pages/Amazon';
+import AsmlPage from './pages/ASML';
+import TsmcPage from './pages/TSMC';
 
 export default function App() {
   return (
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/microsoft" element={<MicrosoftPage />} />
         <Route path="/google" element={<GooglePage />} />
         <Route path="/amazon" element={<AmazonPage />} />
+        <Route path="/asml" element={<AsmlPage />} />
+        <Route path="/tsmc" element={<TsmcPage />} />
       </Routes>
     </HashRouter>
   );

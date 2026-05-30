@@ -102,6 +102,24 @@ export const PAGE_META = {
     keywords: 'Amazon dashboard, AMZN revenue projection, AWS forecast, Amazon Advertising, Prime, e-commerce financial model',
     organization: 'Amazon.com, Inc.',
   },
+  asml: {
+    title: 'ASML Revenue Growth Dashboard | greaux',
+    description: 'Interactive ASML projection model for EUV Systems, DUV & Other Systems, and Installed Base Management, with earnings, valuation, and implied ASML share price.',
+    path: 'asml/',
+    image: 'og-asml.svg',
+    imageAlt: 'ASML revenue growth dashboard preview',
+    keywords: 'ASML dashboard, ASML revenue projection, EUV lithography forecast, High-NA EUV, semiconductor equipment, financial model',
+    organization: 'ASML Holding N.V.',
+  },
+  tsmc: {
+    title: 'TSMC Revenue Growth Dashboard | greaux',
+    description: 'Interactive TSMC projection model for HPC, Smartphone, IoT, Automotive, and DCE platforms, with earnings, valuation, and implied TSM ADS price.',
+    path: 'tsmc/',
+    image: 'og-tsmc.svg',
+    imageAlt: 'TSMC revenue growth dashboard preview',
+    keywords: 'TSMC dashboard, TSM revenue projection, HPC platform forecast, advanced nodes, foundry financial model, AI chip manufacturing',
+    organization: 'Taiwan Semiconductor Manufacturing Company Limited',
+  },
 };
 
 function absoluteFromBase(path = '') {

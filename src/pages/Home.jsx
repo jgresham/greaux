@@ -7,6 +7,8 @@ import { AppleLogoMark } from './Apple';
 import { MicrosoftLogoMark } from './Microsoft';
 import { GoogleLogoMark } from './Google';
 import { AmazonLogoMark } from './Amazon';
+import { AsmlLogoMark } from './ASML';
+import { TsmcLogoMark } from './TSMC';
 
 const companies = [
   {
@@ -139,6 +141,32 @@ const companies = [
     ],
     badge: '◆',
   },
+  {
+    ticker: 'ASML',
+    name: 'ASML',
+    description: 'EUV Lithography · DUV Systems · Installed Base Mgmt.',
+    accent: '#0F238C',
+    to: '/asml',
+    logo: 'asml',
+    stats: [
+      { label: '2024 Revenue', value: '€28.3B' },
+      { label: 'Projection through', value: '2029' },
+    ],
+    badge: '◆',
+  },
+  {
+    ticker: 'TSM',
+    name: 'TSMC',
+    description: 'HPC · Smartphone · IoT · Automotive · Advanced Nodes.',
+    accent: '#E60012',
+    to: '/tsmc',
+    logo: 'tsmc',
+    stats: [
+      { label: '2024 Revenue', value: '$90.1B' },
+      { label: 'Projection through', value: '2029' },
+    ],
+    badge: '◆',
+  },
 ];
 
 function TeslaLogo() {
@@ -217,6 +245,8 @@ function CompanyLogo({ logo }) {
   if (logo === 'microsoft') return <MicrosoftLogoMark size={36} />;
   if (logo === 'google') return <GoogleLogoMark width={100} />;
   if (logo === 'amazon') return <AmazonLogoMark width={90} />;
+  if (logo === 'asml') return <AsmlLogoMark width={90} fill="#0F238C" />;
+  if (logo === 'tsmc') return <TsmcLogoMark width={90} fill="#E60012" />;
   return null;
 }
 
