@@ -15,7 +15,7 @@ greaux is a company growth projection and visualization tool. New company or pro
 
 ## Required Deliverables
 
-1. Create or update the landing-page card in `src/pages/Home.jsx`.
+1. Create or update the landing-page card in `src/pages/Home.jsx`. The card description field should list the company's main product segments or revenue drivers only — for example `'Data Center · Gaming · Automotive · Instinct.'` Do not add adjectives, marketing language, or product taglines. No fluff.
 2. Use the company's official logo or official wordmark treatment where practical.
 3. Use an official or clearly brand-aligned accent color.
 4. Create a company page with two bar charts:

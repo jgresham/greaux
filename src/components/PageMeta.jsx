@@ -48,6 +48,15 @@ export const PAGE_META = {
     keywords: 'Eli Lilly dashboard, LLY revenue projection, Mounjaro forecast, Zepbound forecast, Foundayo forecast, pharma financial model',
     organization: 'Eli Lilly and Company',
   },
+  amd: {
+    title: 'AMD Revenue Growth Dashboard | greaux',
+    description: 'Interactive AMD projection model for Data Center, Client, Gaming, and Embedded segments, with earnings, valuation, and implied AMD share price.',
+    path: 'amd/',
+    image: 'og-amd.svg',
+    imageAlt: 'AMD revenue growth dashboard preview',
+    keywords: 'AMD dashboard, AMD revenue projection, EPYC forecast, Instinct MI300, Ryzen, embedded recovery, financial model',
+    organization: 'Advanced Micro Devices, Inc.',
+  },
   nvidia: {
     title: 'Nvidia Revenue Growth Dashboard | greaux',
     description: 'Interactive Nvidia projection model for Data Center, Gaming, Professional Visualization, Automotive, earnings, valuation, and implied NVDA share price.',

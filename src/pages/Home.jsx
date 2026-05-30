@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import GreauxLogo from '../components/GreauxLogo';
 import PageMeta, { PAGE_META } from '../components/PageMeta';
 import { NvidiaLogoMark } from './Nvidia';
+import { AmdLogoMark } from './AMD';
 
 const companies = [
   {
@@ -44,9 +45,22 @@ const companies = [
     badge: '◈',
   },
   {
+    ticker: 'AMD',
+    name: 'AMD',
+    description: 'Data Center · Client · Gaming · Embedded.',
+    accent: '#ED1C24',
+    to: '/amd',
+    logo: 'amd',
+    stats: [
+      { label: '2024 Revenue', value: '$25.8B' },
+      { label: 'Projection through', value: '2029' },
+    ],
+    badge: '◆',
+  },
+  {
     ticker: 'NVDA',
     name: 'Nvidia',
-    description: 'Data Center · Gaming · Professional Visualization · Automotive · Blackwell.',
+    description: 'Data Center · Gaming · Automotive · Instinct.',
     accent: '#76b900',
     to: '/nvidia',
     logo: 'nvidia',
@@ -142,6 +156,7 @@ function CompanyLogo({ logo }) {
   if (logo === 'uniswap') return <UniswapLogo />;
   if (logo === 'lilly') return <LillyLogo />;
   if (logo === 'nvidia') return <NvidiaLogoMark width={110} fill="#76b900" />;
+  if (logo === 'amd') return <AmdLogoMark width={100} fill="#ED1C24" />;
   return null;
 }
 
