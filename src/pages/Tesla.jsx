@@ -263,24 +263,40 @@ export default function TeslaPage() {
         }}>
           <InsightCard
             title="Vehicle deliveries"
-            subtitle="Reported annual deliveries, split by Tesla's Model 3/Y and Other Models groups."
+            subtitle="Reported through 2025; * years extend the default unit-growth scenario."
           >
             <InsightBarChart
-              labels={OPERATING_METRICS.years}
+              labels={OPERATING_METRICS.projectionYears}
               stacked
               unit="M"
               decimals={2}
-              ariaLabel="Tesla annual vehicle deliveries by product group from 2020 through 2025"
+              ariaLabel="Tesla annual vehicle deliveries by product group from 2020 through 2029, with 2026 through 2029 projected"
               datasets={[
                 {
                   label: 'Model 3/Y',
-                  data: OPERATING_METRICS.model3YDeliveriesM,
+                  data: OPERATING_METRICS.model3YDeliveriesActualM,
                   backgroundColor: '#4da3ff',
                 },
                 {
+                  label: 'projected',
+                  data: OPERATING_METRICS.model3YDeliveriesProjectedM,
+                  backgroundColor: '#4da3ff55',
+                  borderColor: '#4da3ff',
+                  borderWidth: 1.5,
+                  borderDash: [4, 3],
+                },
+                {
                   label: 'Other Models',
-                  data: OPERATING_METRICS.otherDeliveriesM,
+                  data: OPERATING_METRICS.otherDeliveriesActualM,
                   backgroundColor: '#ffb347',
+                },
+                {
+                  label: 'projected',
+                  data: OPERATING_METRICS.otherDeliveriesProjectedM,
+                  backgroundColor: '#ffb34755',
+                  borderColor: '#ffb347',
+                  borderWidth: 1.5,
+                  borderDash: [4, 3],
                 },
               ]}
             />
@@ -288,18 +304,53 @@ export default function TeslaPage() {
 
           <InsightCard
             title="Energy storage deployments"
-            subtitle="Annual storage deployed in GWh, a useful scale marker for Tesla Energy."
+            subtitle="Reported through 2025; * years use the default 30% deployment-growth scenario."
           >
             <InsightBarChart
-              labels={OPERATING_METRICS.years}
+              labels={OPERATING_METRICS.projectionYears}
               unit=" GWh"
               decimals={1}
-              ariaLabel="Tesla annual energy storage deployments in gigawatt-hours from 2020 through 2025"
+              ariaLabel="Tesla annual energy storage deployments in gigawatt-hours from 2020 through 2029, with 2026 through 2029 projected"
               datasets={[
                 {
                   label: 'Storage deployed',
-                  data: OPERATING_METRICS.storageDeploymentsGWh,
+                  data: OPERATING_METRICS.storageDeploymentsActualGWh,
                   backgroundColor: '#3ddea0',
+                },
+                {
+                  label: 'projected',
+                  data: OPERATING_METRICS.storageDeploymentsProjectedGWh,
+                  backgroundColor: '#3ddea055',
+                  borderColor: '#3ddea0',
+                  borderWidth: 1.5,
+                  borderDash: [4, 3],
+                },
+              ]}
+            />
+          </InsightCard>
+
+          <InsightCard
+            title="Robotaxis produced"
+            subtitle="X researcher count anchor for April 2026; * denotes projected monthly production."
+          >
+            <InsightBarChart
+              labels={OPERATING_METRICS.robotaxiProductionMonths}
+              unit=" units"
+              decimals={0}
+              ariaLabel="Tesla Cybercab robotaxis produced by month, observed April 2026 and projected five months forward"
+              datasets={[
+                {
+                  label: 'Robotaxis produced',
+                  data: OPERATING_METRICS.robotaxiObservedProduced,
+                  backgroundColor: '#ff6b9d',
+                },
+                {
+                  label: 'projected',
+                  data: OPERATING_METRICS.robotaxiProjectedProduced,
+                  backgroundColor: '#ff6b9d55',
+                  borderColor: '#ff6b9d',
+                  borderWidth: 1.5,
+                  borderDash: [4, 3],
                 },
               ]}
             />

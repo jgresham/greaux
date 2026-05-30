@@ -1,6 +1,6 @@
 # greaux
 
-greaux is a company growth projection and visualization tool. It turns known operating history, segment assumptions, and scenario inputs into interactive dashboards for comparing how different growth drivers can shape future revenue, earnings, and operating scale.
+greaux is a company and protocol growth projection and visualization tool. It turns known operating history, segment assumptions, and scenario inputs into interactive dashboards for comparing how different growth drivers can shape future revenue, earnings, and operating scale.
 
 The app is built with React, Vite, and Chart.js.
 
@@ -8,12 +8,15 @@ The app is built with React, Vite, and Chart.js.
 
 - Tesla: revenue and earnings projections across Automotive, Energy & Storage, Services & Other, Robotaxi, and Optimus.
 - SpaceX: estimated revenue and earnings projections across Starlink, Launch Services, Government Systems, Dragon, and Starship.
+- Uniswap: DEX volume, swap-fee revenue, protocol fee-switch capture, and implied UNI valuation scenarios.
+- Eli Lilly: revenue and earnings projections across Mounjaro, Zepbound, Foundayo, oncology, immunology, and other medicines.
 
 ## Features
 
-- Interactive company dashboards with charts, metric cards, assumptions, and explanatory context.
+- Interactive company and protocol dashboards with charts, metric cards, assumptions, and explanatory context.
 - Segment-level modeling for revenue, margins, and contribution to projected outcomes.
 - Company-specific inputs for important growth drivers, such as Robotaxi rides, Optimus unit sales, and average selling price.
+- Every time-series chart includes 3-5 future projection data points, visually distinguished from actual or known values.
 - Source-oriented financial data stored under `financial-data/`.
 - SEO and sharing metadata for the landing page and company-specific pages.
 - Dark, compact dashboard UI optimized for scanning and scenario comparison.
@@ -31,6 +34,8 @@ The local Vite app is served with the `/greaux/` base path. Common local routes:
 http://127.0.0.1:5173/greaux/
 http://127.0.0.1:5173/greaux/#/tesla
 http://127.0.0.1:5173/greaux/#/spacex
+http://127.0.0.1:5173/greaux/#/uniswap
+http://127.0.0.1:5173/greaux/#/lilly
 ```
 
 ## Build And Deploy
@@ -53,16 +58,29 @@ The configured production base path is `/greaux/`.
 
 ```text
 financial-data/
+  lly-eli-lilly/
+    known-revenue-and-product-numbers.md
+    projected-financial-data.md
   spacex/
     known-revenue-and-product-numbers.md
+    projected-financial-data.md
   tsla-tesla/
     known-revenue-and-product-numbers.md
+    projected-financial-data.md
+  uni-uniswap/
+    known-revenue-and-product-numbers.md
+    projected-financial-data.md
 public/
+  lilly-logo.svg
   og-greaux.svg
+  og-lilly.svg
   og-spacex.svg
   og-tesla.svg
+  og-uniswap.svg
+  lilly/index.html
   spacex/index.html
   tesla/index.html
+  uniswap/index.html
 src/
   App.jsx
   data.js
@@ -78,9 +96,11 @@ src/
     RevenueChart.jsx
     Tooltip.jsx
   pages/
+    EliLilly.jsx
     Home.jsx
     SpaceX.jsx
     Tesla.jsx
+    Uniswap.jsx
 ```
 
 ## Adding Another Company

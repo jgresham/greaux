@@ -8,10 +8,16 @@ export const HISTORICAL = {
 };
 
 export const OPERATING_METRICS = {
-  years: [2020, 2021, 2022, 2023, 2024, 2025],
-  model3YDeliveriesM: [0.443, 0.911, 1.247, 1.740, 1.704, 1.585],
-  otherDeliveriesM: [0.057, 0.025, 0.067, 0.069, 0.085, 0.051],
-  storageDeploymentsGWh: [3.0, 4.0, 6.5, 14.7, 31.4, 46.7],
+  projectionYears: [2020, 2021, 2022, 2023, 2024, 2025, '2026*', '2027*', '2028*', '2029*'],
+  model3YDeliveriesActualM: [0.443, 0.911, 1.247, 1.740, 1.704, 1.585, null, null, null, null],
+  model3YDeliveriesProjectedM: [null, null, null, null, null, null, 1.74, 1.92, 2.12, 2.34],
+  otherDeliveriesActualM: [0.057, 0.025, 0.067, 0.069, 0.085, 0.051, null, null, null, null],
+  otherDeliveriesProjectedM: [null, null, null, null, null, null, 0.07, 0.10, 0.14, 0.20],
+  storageDeploymentsActualGWh: [3.0, 4.0, 6.5, 14.7, 31.4, 46.7, null, null, null, null],
+  storageDeploymentsProjectedGWh: [null, null, null, null, null, null, 60.7, 78.9, 102.5, 133.3],
+  robotaxiProductionMonths: ['Apr 2026', 'May 2026*', 'Jun 2026*', 'Jul 2026*', 'Aug 2026*', 'Sep 2026*'],
+  robotaxiObservedProduced: [65, null, null, null, null, null],
+  robotaxiProjectedProduced: [null, 90, 135, 200, 300, 450],
 };
 
 export const SEGMENT_COLORS = {

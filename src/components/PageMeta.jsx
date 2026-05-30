@@ -6,11 +6,11 @@ const BASE_PATH = import.meta.env.BASE_URL || '/';
 export const PAGE_META = {
   home: {
     title: 'greaux | Interactive Financial Projection Models',
-    description: 'Interactive financial projection dashboards for public and private companies. Adjust assumptions, compare revenue drivers, and see outcomes.',
+    description: 'Interactive financial projection dashboards for companies and protocols. Adjust assumptions, compare revenue drivers, and see outcomes.',
     path: '',
     image: 'og-greaux.svg',
     imageAlt: 'greaux financial projection dashboard preview',
-    keywords: 'greaux, financial projections, revenue dashboard, equity model, investing dashboard',
+    keywords: 'greaux, financial projections, revenue dashboard, company model, protocol model, investing dashboard',
   },
   tesla: {
     title: 'Tesla Revenue Growth Dashboard | greaux',
@@ -29,6 +29,24 @@ export const PAGE_META = {
     imageAlt: 'SpaceX revenue growth dashboard preview',
     keywords: 'SpaceX dashboard, SpaceX revenue projection, Starlink revenue, Falcon launches, Starship, private company financial model',
     organization: 'SpaceX',
+  },
+  uniswap: {
+    title: 'Uniswap Fee Switch Growth Dashboard | greaux',
+    description: 'Interactive Uniswap projection model for DEX volume, swap fees, fee-switch capture, protocol earnings, and implied UNI value.',
+    path: 'uniswap/',
+    image: 'og-uniswap.svg',
+    imageAlt: 'Uniswap fee switch growth dashboard preview',
+    keywords: 'Uniswap dashboard, UNI valuation, Uniswap fee switch, DEX volume, protocol revenue, DeFi financial model',
+    organization: 'Uniswap Protocol',
+  },
+  lilly: {
+    title: 'Eli Lilly Revenue Growth Dashboard | greaux',
+    description: 'Interactive Eli Lilly projection model for Mounjaro, Zepbound, Foundayo, oncology, immunology, earnings, valuation, and implied LLY share price.',
+    path: 'lilly/',
+    image: 'og-lilly.svg',
+    imageAlt: 'Eli Lilly revenue growth dashboard preview',
+    keywords: 'Eli Lilly dashboard, LLY revenue projection, Mounjaro forecast, Zepbound forecast, Foundayo forecast, pharma financial model',
+    organization: 'Eli Lilly and Company',
   },
 };
 

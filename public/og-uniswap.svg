@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Uniswap fee switch growth dashboard</title>
+  <desc id="desc">Dark Uniswap projection dashboard preview with swap fees, fee-switch capture, and implied UNI value.</desc>
+  <defs>
+    <linearGradient id="uniCard" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ff007a"/>
+      <stop offset="100%" stop-color="#fc72ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0f"/>
+  <rect x="72" y="68" width="1056" height="494" rx="28" fill="#111118" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+  <rect x="72" y="68" width="1056" height="8" rx="4" fill="#ff007a"/>
+  <g transform="translate(112 120)">
+    <circle cx="31" cy="31" r="31" fill="url(#uniCard)"/>
+    <path d="M20 19c7.2 1.7 10.8 6.1 10.8 13.4v7.8c0 3.3 1.8 5.3 5.2 5.3s5.3-2 5.3-5.3V19h8.5v21c0 8.1-5.3 13.1-13.8 13.1S22.3 48.1 22.3 40v-7.2c0-4.1-1.8-6.5-5.6-7.8L20 19z" fill="#fff"/>
+    <text x="82" y="42" fill="#ff007a" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="5">UNI DEX MODEL</text>
+  </g>
+  <text x="112" y="248" fill="#f0eff8" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">Uniswap Fee Switch</text>
+  <text x="112" y="332" fill="#ff007a" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">Growth Dashboard</text>
+  <text x="116" y="394" fill="#9898b0" font-family="Arial, Helvetica, sans-serif" font-size="28">DEX volume, swap fees, protocol earnings, and UNI value.</text>
+  <g transform="translate(116 452)">
+    <rect width="188" height="72" rx="14" fill="#18181f" stroke="rgba(255,255,255,0.12)"/>
+    <text x="24" y="30" fill="#5a5a72" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="2">2025 FEES</text>
+    <text x="24" y="56" fill="#ff007a" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">$1.06B</text>
+  </g>
+  <g transform="translate(340 452)">
+    <rect width="236" height="72" rx="14" fill="#18181f" stroke="rgba(255,255,255,0.12)"/>
+    <text x="24" y="30" fill="#5a5a72" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="2">DEFAULT SWITCH</text>
+    <text x="24" y="56" fill="#e8ff47" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800">0.05%</text>
+  </g>
+  <g transform="translate(788 142)">
+    <rect x="0" y="220" width="42" height="110" rx="8" fill="#4da3ff"/>
+    <rect x="62" y="244" width="42" height="86" rx="8" fill="#ff007a"/>
+    <rect x="124" y="186" width="42" height="144" rx="8" fill="#4da3ff"/>
+    <rect x="186" y="226" width="42" height="104" rx="8" fill="#ff007a"/>
+    <rect x="248" y="126" width="42" height="204" rx="8" fill="#4da3ff" opacity="0.46" stroke="#4da3ff" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect x="310" y="174" width="42" height="156" rx="8" fill="#ff007a" opacity="0.46" stroke="#ff007a" stroke-width="2" stroke-dasharray="8 6"/>
+    <path d="M0 346H366" stroke="#5a5a72" stroke-width="2"/>
+    <path d="M0 266H366M0 186H366M0 106H366" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  </g>
+</svg>

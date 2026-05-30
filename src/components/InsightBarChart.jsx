@@ -20,6 +20,7 @@ export default function InsightBarChart({
 }) {
   const canvasRef = useRef(null);
   const chartRef = useRef(null);
+  const shouldSkipXTicks = labels.length > 8;
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -73,7 +74,9 @@ export default function InsightBarChart({
             ticks: {
               color: '#5a5a72',
               font: { family: "'DM Mono', monospace", size: 12 },
-              autoSkip: false,
+              autoSkip: shouldSkipXTicks,
+              maxTicksLimit: shouldSkipXTicks ? 6 : undefined,
+              maxRotation: 0,
             },
           },
           y: {
@@ -94,7 +97,7 @@ export default function InsightBarChart({
     return () => {
       if (chartRef.current) chartRef.current.destroy();
     };
-  }, [ariaLabel, datasets, decimals, height, labels, stacked, unit]);
+  }, [ariaLabel, datasets, decimals, height, labels, shouldSkipXTicks, stacked, unit]);
 
   return (
     <div style={{ position: 'relative', width: '100%', height }}>

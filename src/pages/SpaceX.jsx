@@ -68,10 +68,27 @@ const sourceNotes = [
 ];
 
 const OPERATING_METRICS = {
-  launchYears: [2020, 2021, 2022, 2023, 2024, 2025],
-  orbitalLaunches: [25, 31, 61, 96, 134, 165],
-  starlinkMilestones: ['Jan 2022', 'Dec 2022', 'Dec 2023', 'Dec 2024', 'Dec 2025', 'Feb 2026'],
-  starlinkCustomersM: [0.145, 1.0, 2.3, 4.6, 9.0, 10.0],
+  launchYears: [2020, 2021, 2022, 2023, 2024, 2025, '2026*', '2027*', '2028*', '2029*', '2030*'],
+  orbitalLaunchesActual: [25, 31, 61, 96, 134, 165, null, null, null, null, null],
+  orbitalLaunchesProjected: [null, null, null, null, null, null, 185, 210, 240, 275, 315],
+  starlinkMilestones: [
+    'Jan 2022',
+    'Dec 2022',
+    'Dec 2023',
+    'Dec 2024',
+    'Dec 2025',
+    'Feb 2026',
+    'Dec 2026*',
+    'Dec 2027*',
+    'Dec 2028*',
+    'Dec 2029*',
+    'Dec 2030*',
+  ],
+  starlinkCustomersActualM: [0.145, 1.0, 2.3, 4.6, 9.0, 10.0, null, null, null, null, null],
+  starlinkCustomersProjectedM: [null, null, null, null, null, null, 16.8, 24.0, 33.0, 44.0, 56.0],
+  payloadMassYears: [2023, 2024, 2025, '2026*', '2027*', '2028*', '2029*', '2030*'],
+  payloadMassActualMetricTons: [1210, 1699, 2213, null, null, null, null, null],
+  payloadMassProjectedMetricTons: [null, null, null, 2600, 3300, 4300, 5600, 7300],
 };
 
 const fmt = (n, decimals = 0) =>
@@ -761,18 +778,26 @@ export default function SpaceXPage() {
           }}>
             <InsightCard
               title="Launch cadence"
-              subtitle="Annual orbital launches, showing the Falcon-driven cadence ramp."
+              subtitle="Reported through 2025; * years use a base-case cadence ramp."
             >
               <InsightBarChart
                 labels={OPERATING_METRICS.launchYears}
                 unit=""
                 decimals={0}
-                ariaLabel="SpaceX annual orbital launches from 2020 through 2025"
+                ariaLabel="SpaceX annual orbital launches from 2020 through 2030, with 2026 through 2030 projected"
                 datasets={[
                   {
                     label: 'Orbital launches',
-                    data: OPERATING_METRICS.orbitalLaunches,
+                    data: OPERATING_METRICS.orbitalLaunchesActual,
                     backgroundColor: '#e8ff47',
+                  },
+                  {
+                    label: 'projected',
+                    data: OPERATING_METRICS.orbitalLaunchesProjected,
+                    backgroundColor: '#e8ff4755',
+                    borderColor: '#e8ff47',
+                    borderWidth: 1.5,
+                    borderDash: [4, 3],
                   },
                 ]}
               />
@@ -780,18 +805,53 @@ export default function SpaceXPage() {
 
             <InsightCard
               title="Starlink active customers"
-              subtitle="Public customer milestones; values are lower-bound announcements."
+              subtitle="Public milestones through Feb. 2026; * years use a decelerating growth scenario."
             >
               <InsightBarChart
                 labels={OPERATING_METRICS.starlinkMilestones}
                 unit="M"
                 decimals={1}
-                ariaLabel="Starlink active customer milestones from January 2022 through February 2026"
+                ariaLabel="Starlink active customer milestones from January 2022 through 2030, with December 2026 through 2030 projected"
                 datasets={[
                   {
                     label: 'Active customers',
-                    data: OPERATING_METRICS.starlinkCustomersM,
+                    data: OPERATING_METRICS.starlinkCustomersActualM,
                     backgroundColor: '#4da3ff',
+                  },
+                  {
+                    label: 'projected',
+                    data: OPERATING_METRICS.starlinkCustomersProjectedM,
+                    backgroundColor: '#4da3ff55',
+                    borderColor: '#4da3ff',
+                    borderWidth: 1.5,
+                    borderDash: [4, 3],
+                  },
+                ]}
+              />
+            </InsightCard>
+
+            <InsightCard
+              title="Payload mass launched"
+              subtitle="Official 2023-2025 S-1 history; * years are base-case mass-to-orbit projections."
+            >
+              <InsightBarChart
+                labels={OPERATING_METRICS.payloadMassYears}
+                unit=" t"
+                decimals={0}
+                ariaLabel="SpaceX total payload mass launched to orbit by year from 2023 through 2030, with 2026 through 2030 projected"
+                datasets={[
+                  {
+                    label: 'Mass to orbit',
+                    data: OPERATING_METRICS.payloadMassActualMetricTons,
+                    backgroundColor: '#3ddea0',
+                  },
+                  {
+                    label: 'projected',
+                    data: OPERATING_METRICS.payloadMassProjectedMetricTons,
+                    backgroundColor: '#3ddea055',
+                    borderColor: '#3ddea0',
+                    borderWidth: 1.5,
+                    borderDash: [4, 3],
                   },
                 ]}
               />

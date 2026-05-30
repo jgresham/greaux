@@ -6,7 +6,7 @@ const companies = [
   {
     ticker: 'TSLA',
     name: 'Tesla, Inc.',
-    description: 'Automotive · Energy · Robotaxi · Optimus revenue and earnings model.',
+    description: 'Automotive · Energy · Robotaxi · Optimus.',
     accent: '#e82127',
     to: '/tesla',
     logo: 'tesla',
@@ -19,7 +19,7 @@ const companies = [
   {
     ticker: 'PRIVATE',
     name: 'SpaceX',
-    description: 'Starlink · Launch · Dragon · Starship revenue and earnings projection model.',
+    description: 'Starlink · Launch · Dragon · Starship.',
     accent: '#4da3ff',
     to: '/spacex',
     logo: 'spacex',
@@ -28,6 +28,32 @@ const companies = [
       { label: 'Projection through', value: '2030' },
     ],
     badge: '◇',
+  },
+  {
+    ticker: 'UNI',
+    name: 'Uniswap',
+    description: 'DEX volume · Swap fees · Fee switch.',
+    accent: '#ff007a',
+    to: '/uniswap',
+    logo: 'uniswap',
+    stats: [
+      { label: '2025 Fees', value: '$1.06B' },
+      { label: 'Default switch', value: '0.05%' },
+    ],
+    badge: '◈',
+  },
+  {
+    ticker: 'LLY',
+    name: 'Eli Lilly',
+    description: 'Mounjaro · Zepbound · Foundayo · Oncology.',
+    accent: '#d52b1e',
+    to: '/lilly',
+    logo: 'lilly',
+    stats: [
+      { label: '2025 Revenue', value: '$65.2B' },
+      { label: '2026 Guide', value: '$82-85B' },
+    ],
+    badge: '✦',
   },
 ];
 
@@ -60,9 +86,47 @@ function SpaceXLogo() {
   );
 }
 
+function UniswapLogo() {
+  return (
+    <svg viewBox="0 0 188 42" width="132" height="30" aria-label="Uniswap logo" role="img">
+      <defs>
+        <linearGradient id="uniswapLogoGradient" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#ff007a" />
+          <stop offset="100%" stopColor="#fc72ff" />
+        </linearGradient>
+      </defs>
+      <circle cx="21" cy="21" r="19" fill="url(#uniswapLogoGradient)" />
+      <path
+        d="M13 13c4.9 1.1 7.3 4.1 7.3 9.1v5.3c0 2.2 1.2 3.6 3.5 3.6s3.6-1.4 3.6-3.6V13h5.8v14.3c0 5.5-3.6 8.9-9.4 8.9-5.7 0-9.3-3.4-9.3-8.9v-4.9c0-2.8-1.2-4.4-3.8-5.3L13 13z"
+        fill="#fff"
+      />
+      <text x="52" y="28" fill="#f0eff8" fontFamily="Inter, Arial, sans-serif" fontSize="24" fontWeight="800">
+        Uniswap
+      </text>
+    </svg>
+  );
+}
+
+function LillyLogo() {
+  return (
+    <img
+      src={`${import.meta.env.BASE_URL}lilly-logo.svg`}
+      alt="Lilly"
+      style={{
+        display: 'block',
+        width: 74,
+        height: 42,
+        objectFit: 'contain',
+      }}
+    />
+  );
+}
+
 function CompanyLogo({ logo }) {
   if (logo === 'tesla') return <TeslaLogo />;
   if (logo === 'spacex') return <SpaceXLogo />;
+  if (logo === 'uniswap') return <UniswapLogo />;
+  if (logo === 'lilly') return <LillyLogo />;
   return null;
 }
 
@@ -70,7 +134,11 @@ function CompanyCard({ ticker, name, description, accent, to, stats, badge, logo
   return (
     <Link
       to={to}
-      style={{ textDecoration: 'none' }}
+      style={{
+        textDecoration: 'none',
+        display: 'flex',
+        height: 260,
+      }}
     >
       <div
         style={{
@@ -86,6 +154,7 @@ function CompanyCard({ ticker, name, description, accent, to, stats, badge, logo
           flexDirection: 'column',
           gap: 16,
           height: '100%',
+          width: '100%',
           boxSizing: 'border-box',
         }}
         onMouseEnter={e => {
@@ -213,7 +282,7 @@ export default function Home() {
               fontFamily: 'var(--mono)',
               maxWidth: 480,
             }}>
-              Interactive equity projection models — adjust assumptions, see outcomes.
+              Interactive company and protocol projection models — adjust assumptions, see outcomes.
             </p>
           </div>
         </header>
@@ -233,7 +302,7 @@ export default function Home() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: 16,
-            alignItems: 'start',
+            alignItems: 'stretch',
           }}>
             {companies.map(c => (
               <CompanyCard key={c.ticker} {...c} />
