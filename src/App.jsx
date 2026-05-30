@@ -4,6 +4,7 @@ import TeslaPage from './pages/Tesla';
 import SpaceXPage from './pages/SpaceX';
 import UniswapPage from './pages/Uniswap';
 import EliLillyPage from './pages/EliLilly';
+import NvidiaPage from './pages/Nvidia';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/spacex" element={<SpaceXPage />} />
         <Route path="/uniswap" element={<UniswapPage />} />
         <Route path="/lilly" element={<EliLillyPage />} />
+        <Route path="/nvidia" element={<NvidiaPage />} />
       </Routes>
     </HashRouter>
   );

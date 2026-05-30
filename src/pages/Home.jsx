@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import GreauxLogo from '../components/GreauxLogo';
 import PageMeta, { PAGE_META } from '../components/PageMeta';
+import { NvidiaLogoMark } from './Nvidia';
 
 const companies = [
   {
@@ -41,6 +42,19 @@ const companies = [
       { label: 'Default switch', value: '0.05%' },
     ],
     badge: '◈',
+  },
+  {
+    ticker: 'NVDA',
+    name: 'Nvidia',
+    description: 'Data Center · Gaming · Professional Visualization · Automotive · Blackwell.',
+    accent: '#76b900',
+    to: '/nvidia',
+    logo: 'nvidia',
+    stats: [
+      { label: 'FY2025 Revenue', value: '$130.5B' },
+      { label: 'Projection through', value: 'FY2030' },
+    ],
+    badge: '◆',
   },
   {
     ticker: 'LLY',
@@ -127,6 +141,7 @@ function CompanyLogo({ logo }) {
   if (logo === 'spacex') return <SpaceXLogo />;
   if (logo === 'uniswap') return <UniswapLogo />;
   if (logo === 'lilly') return <LillyLogo />;
+  if (logo === 'nvidia') return <NvidiaLogoMark width={110} fill="#76b900" />;
   return null;
 }
 

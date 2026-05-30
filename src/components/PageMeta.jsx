@@ -48,6 +48,15 @@ export const PAGE_META = {
     keywords: 'Eli Lilly dashboard, LLY revenue projection, Mounjaro forecast, Zepbound forecast, Foundayo forecast, pharma financial model',
     organization: 'Eli Lilly and Company',
   },
+  nvidia: {
+    title: 'Nvidia Revenue Growth Dashboard | greaux',
+    description: 'Interactive Nvidia projection model for Data Center, Gaming, Professional Visualization, Automotive, earnings, valuation, and implied NVDA share price.',
+    path: 'nvidia/',
+    image: 'og-nvidia.svg',
+    imageAlt: 'Nvidia revenue growth dashboard preview',
+    keywords: 'Nvidia dashboard, NVDA revenue projection, Data Center forecast, Blackwell GPU, AI infrastructure, financial model',
+    organization: 'NVIDIA Corporation',
+  },
 };
 
 function absoluteFromBase(path = '') {
