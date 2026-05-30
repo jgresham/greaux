@@ -3,6 +3,10 @@ import GreauxLogo from '../components/GreauxLogo';
 import PageMeta, { PAGE_META } from '../components/PageMeta';
 import { NvidiaLogoMark } from './Nvidia';
 import { AmdLogoMark } from './AMD';
+import { AppleLogoMark } from './Apple';
+import { MicrosoftLogoMark } from './Microsoft';
+import { GoogleLogoMark } from './Google';
+import { AmazonLogoMark } from './Amazon';
 
 const companies = [
   {
@@ -83,6 +87,58 @@ const companies = [
     ],
     badge: '✦',
   },
+  {
+    ticker: 'AAPL',
+    name: 'Apple',
+    description: 'iPhone · Services · Mac · iPad · Wearables.',
+    accent: '#0071e3',
+    to: '/apple',
+    logo: 'apple',
+    stats: [
+      { label: 'FY2024 Revenue', value: '$391.0B' },
+      { label: 'Projection through', value: 'FY2029' },
+    ],
+    badge: '◆',
+  },
+  {
+    ticker: 'MSFT',
+    name: 'Microsoft',
+    description: 'Intelligent Cloud · Productivity & Business · Personal Computing.',
+    accent: '#00A4EF',
+    to: '/microsoft',
+    logo: 'microsoft',
+    stats: [
+      { label: 'FY2024 Revenue', value: '$245.1B' },
+      { label: 'Projection through', value: 'FY2029' },
+    ],
+    badge: '◆',
+  },
+  {
+    ticker: 'GOOGL',
+    name: 'Alphabet',
+    description: 'Google Search · YouTube · Google Cloud · Subscriptions.',
+    accent: '#4285F4',
+    to: '/google',
+    logo: 'google',
+    stats: [
+      { label: '2024 Revenue', value: '$350.0B' },
+      { label: 'Projection through', value: '2029' },
+    ],
+    badge: '◆',
+  },
+  {
+    ticker: 'AMZN',
+    name: 'Amazon',
+    description: 'AWS · Advertising · Third-Party Sellers · Subscriptions · Stores.',
+    accent: '#FF9900',
+    to: '/amazon',
+    logo: 'amazon',
+    stats: [
+      { label: '2024 Revenue', value: '$637.9B' },
+      { label: 'Projection through', value: '2029' },
+    ],
+    badge: '◆',
+  },
 ];
 
 function TeslaLogo() {
@@ -157,6 +213,10 @@ function CompanyLogo({ logo }) {
   if (logo === 'lilly') return <LillyLogo />;
   if (logo === 'nvidia') return <NvidiaLogoMark width={110} fill="#76b900" />;
   if (logo === 'amd') return <AmdLogoMark width={100} fill="#ED1C24" />;
+  if (logo === 'apple') return <AppleLogoMark width={32} fill="#0071e3" />;
+  if (logo === 'microsoft') return <MicrosoftLogoMark size={36} />;
+  if (logo === 'google') return <GoogleLogoMark width={100} />;
+  if (logo === 'amazon') return <AmazonLogoMark width={90} />;
   return null;
 }
 

@@ -66,6 +66,42 @@ export const PAGE_META = {
     keywords: 'Nvidia dashboard, NVDA revenue projection, Data Center forecast, Blackwell GPU, AI infrastructure, financial model',
     organization: 'NVIDIA Corporation',
   },
+  apple: {
+    title: 'Apple Revenue Growth Dashboard | greaux',
+    description: 'Interactive Apple projection model for iPhone, Services, Mac, iPad, and Wearables segments, with earnings, valuation, and implied AAPL share price.',
+    path: 'apple/',
+    image: 'og-apple.svg',
+    imageAlt: 'Apple revenue growth dashboard preview',
+    keywords: 'Apple dashboard, AAPL revenue projection, iPhone forecast, Services growth, Apple Intelligence, financial model',
+    organization: 'Apple Inc.',
+  },
+  microsoft: {
+    title: 'Microsoft Revenue Growth Dashboard | greaux',
+    description: 'Interactive Microsoft projection model for Intelligent Cloud, Productivity & Business, and Personal Computing segments, with earnings, valuation, and implied MSFT share price.',
+    path: 'microsoft/',
+    image: 'og-microsoft.svg',
+    imageAlt: 'Microsoft revenue growth dashboard preview',
+    keywords: 'Microsoft dashboard, MSFT revenue projection, Azure forecast, Copilot, Microsoft 365, cloud AI, financial model',
+    organization: 'Microsoft Corporation',
+  },
+  google: {
+    title: 'Alphabet (Google) Revenue Growth Dashboard | greaux',
+    description: 'Interactive Alphabet projection model for Google Search, YouTube, Google Cloud, Subscriptions & Platforms, and Google Network, with earnings, valuation, and implied GOOGL share price.',
+    path: 'google/',
+    image: 'og-google.svg',
+    imageAlt: 'Alphabet Google revenue growth dashboard preview',
+    keywords: 'Google dashboard, GOOGL revenue projection, Google Cloud forecast, YouTube ads, Alphabet financial model, AI Overviews',
+    organization: 'Alphabet Inc.',
+  },
+  amazon: {
+    title: 'Amazon Revenue Growth Dashboard | greaux',
+    description: 'Interactive Amazon projection model for AWS, Advertising, Third-Party Seller Services, Subscriptions, and Stores, with earnings, valuation, and implied AMZN share price.',
+    path: 'amazon/',
+    image: 'og-amazon.svg',
+    imageAlt: 'Amazon revenue growth dashboard preview',
+    keywords: 'Amazon dashboard, AMZN revenue projection, AWS forecast, Amazon Advertising, Prime, e-commerce financial model',
+    organization: 'Amazon.com, Inc.',
+  },
 };
 
 function absoluteFromBase(path = '') {

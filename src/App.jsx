@@ -6,6 +6,10 @@ import UniswapPage from './pages/Uniswap';
 import EliLillyPage from './pages/EliLilly';
 import NvidiaPage from './pages/Nvidia';
 import AmdPage from './pages/AMD';
+import ApplePage from './pages/Apple';
+import MicrosoftPage from './pages/Microsoft';
+import GooglePage from './pages/Google';
+import AmazonPage from './pages/Amazon';
 
 export default function App() {
   return (
@@ -18,6 +22,10 @@ export default function App() {
         <Route path="/lilly" element={<EliLillyPage />} />
         <Route path="/nvidia" element={<NvidiaPage />} />
         <Route path="/amd" element={<AmdPage />} />
+        <Route path="/apple" element={<ApplePage />} />
+        <Route path="/microsoft" element={<MicrosoftPage />} />
+        <Route path="/google" element={<GooglePage />} />
+        <Route path="/amazon" element={<AmazonPage />} />
       </Routes>
     </HashRouter>
   );
