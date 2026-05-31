@@ -12,6 +12,7 @@ import GooglePage from './pages/Google';
 import AmazonPage from './pages/Amazon';
 import AsmlPage from './pages/ASML';
 import TsmcPage from './pages/TSMC';
+import RobinhoodPage from './pages/Robinhood';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/amazon" element={<AmazonPage />} />
         <Route path="/asml" element={<AsmlPage />} />
         <Route path="/tsmc" element={<TsmcPage />} />
+        <Route path="/robinhood" element={<RobinhoodPage />} />
       </Routes>
     </HashRouter>
   );

@@ -120,6 +120,15 @@ export const PAGE_META = {
     keywords: 'TSMC dashboard, TSM revenue projection, HPC platform forecast, advanced nodes, foundry financial model, AI chip manufacturing',
     organization: 'Taiwan Semiconductor Manufacturing Company Limited',
   },
+  robinhood: {
+    title: 'Robinhood Revenue Growth Dashboard | greaux',
+    description: 'Interactive Robinhood projection model for transaction revenue, net interest, and other services, with earnings, valuation, and implied HOOD share price.',
+    path: 'robinhood/',
+    image: 'og-robinhood.svg',
+    imageAlt: 'Robinhood revenue growth dashboard preview',
+    keywords: 'Robinhood dashboard, HOOD revenue projection, options trading forecast, crypto revenue, retail brokerage financial model, Robinhood Gold',
+    organization: 'Robinhood Markets, Inc.',
+  },
 };
 
 function absoluteFromBase(path = '') {

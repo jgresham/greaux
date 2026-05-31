@@ -9,6 +9,7 @@ import { GoogleLogoMark } from './Google';
 import { AmazonLogoMark } from './Amazon';
 import { AsmlLogoMark } from './ASML';
 import { TsmcLogoMark } from './TSMC';
+import { RobinhoodLogoMark } from './Robinhood';
 
 const companies = [
   {
@@ -167,6 +168,19 @@ const companies = [
     ],
     badge: '◆',
   },
+  {
+    ticker: 'HOOD',
+    name: 'Robinhood',
+    description: 'Transaction Revenue · Net Interest · Robinhood Gold.',
+    accent: '#CCFF00',
+    to: '/robinhood',
+    logo: 'robinhood',
+    stats: [
+      { label: '2024 Revenue', value: '$2.95B' },
+      { label: 'Projection through', value: '2029' },
+    ],
+    badge: '◆',
+  },
 ];
 
 function TeslaLogo() {
@@ -247,6 +261,7 @@ function CompanyLogo({ logo }) {
   if (logo === 'amazon') return <AmazonLogoMark width={90} />;
   if (logo === 'asml') return <AsmlLogoMark width={90} fill="#0F238C" />;
   if (logo === 'tsmc') return <TsmcLogoMark width={90} fill="#E60012" />;
+  if (logo === 'robinhood') return <RobinhoodLogoMark width={120} />;
   return null;
 }
 
