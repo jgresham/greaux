@@ -11,7 +11,7 @@ import PageMeta, { PAGE_META } from '../components/PageMeta';
 Chart.register(...registerables);
 
 const ACCENT = '#00A4EF';
-const YEARS = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029];
+const YEARS = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
 const HIST_COUNT = 3;
 const FINAL_INDEX = YEARS.length - 1;
 
@@ -47,7 +47,7 @@ const TOOLTIPS = {
   productivityCAGR: 'CAGR from the FY2024 base of $77.7B. Microsoft 365 Copilot seat attach, Teams Premium, Dynamics 365, and LinkedIn revenue growth.',
   computingCAGR:    'CAGR from the FY2024 base of $59.9B. Windows Commercial licensing, Xbox Game Pass, Surface, and Bing/Copilot search monetization.',
   netMargin:        "GAAP net margin. Microsoft's FY2024 GAAP net income was $88.1B on $245.1B revenue (~35.9%). High-margin cloud and software mix supports 35–40% margins.",
-  peMultiple:       'P/E multiple applied to modeled FY2029 net income.',
+  peMultiple:       'P/E multiple applied to modeled FY2030 net income.',
   sharesB:          'Diluted shares in billions. Microsoft had ~7.43B diluted shares in FY2024. ~$25B/year in buybacks at rising prices yields modest reduction.',
 };
 
@@ -55,7 +55,7 @@ const sourceNotes = [
   'FY2022–FY2024 segment revenue from Microsoft Annual Reports (Form 10-K). Fiscal year ends June 30.',
   'FY2024 Intelligent Cloud grew 21% YoY to $107.5B, driven by Azure and AI services.',
   'Azure revenue is not separately disclosed; it is the primary driver within Intelligent Cloud alongside SQL Server, Windows Server, and GitHub.',
-  'Net margin default of 36% matches FY2024 GAAP and assumes stable software/cloud mix through FY2029.',
+  'Net margin default of 36% matches FY2024 GAAP and assumes stable software/cloud mix through FY2030.',
   'FY2024 Productivity & Business Processes includes Office 365, LinkedIn (~$17B), and Dynamics 365.',
 ];
 
@@ -77,7 +77,7 @@ const fmt = (n, decimals = 0) =>
 const fmtUsdB = v => v >= 1000 ? `$${fmt(v / 1000, 2)}T` : `$${fmt(v, v < 10 ? 2 : 1)}B`;
 const fmtUsd  = v => `$${fmt(v, v < 100 ? 2 : 0)}`;
 
-function projectCAGR(base, cagr, count = 5) {
+function projectCAGR(base, cagr, count = 6) {
   return Array.from({ length: count }, (_, i) =>
     Number((base * Math.pow(1 + cagr / 100, i + 1)).toFixed(2))
   );
@@ -107,15 +107,15 @@ function buildProjections(params) {
   );
 
   const total2024    = sumAt(revenue, 2);
-  const total2029    = sumAt(revenue, FINAL_INDEX);
-  const earnings2029 = sumAt(earnings, FINAL_INDEX);
-  const marketCap    = earnings2029 * params.peMultiple;
+  const total2030    = sumAt(revenue, FINAL_INDEX);
+  const earnings2030 = sumAt(earnings, FINAL_INDEX);
+  const marketCap    = earnings2030 * params.peMultiple;
   const sharePrice   = params.sharesB > 0 ? marketCap / params.sharesB : 0;
-  const eps2029      = params.sharesB > 0 ? earnings2029 / params.sharesB : 0;
-  const cagr5y       = total2024 > 0 ? (Math.pow(total2029 / total2024, 1 / 5) - 1) * 100 : 0;
-  const cloudShare2029 = total2029 > 0 ? revenue.cloud[FINAL_INDEX] / total2029 * 100 : 0;
+  const eps2030      = params.sharesB > 0 ? earnings2030 / params.sharesB : 0;
+  const cagr6y       = total2024 > 0 ? (Math.pow(total2030 / total2024, 1 / 6) - 1) * 100 : 0;
+  const cloudShare2030 = total2030 > 0 ? revenue.cloud[FINAL_INDEX] / total2030 * 100 : 0;
 
-  return { revenue, earnings, total2024, total2029, earnings2029, marketCap, sharePrice, eps2029, cagr5y, cloudShare2029 };
+  return { revenue, earnings, total2024, total2030, earnings2030, marketCap, sharePrice, eps2030, cagr6y, cloudShare2030 };
 }
 
 function makeDatasets(full, color, label) {
@@ -226,8 +226,8 @@ function StackedBarChart({ projections, type }) {
   return (
     <div style={{ position: 'relative', width: '100%', height: type === 'earnings' ? 310 : 360 }}>
       <canvas ref={canvasRef} role="img"
-        aria-label={`Stacked bar chart of Microsoft ${type} by segment FY2022 through FY2029`}>
-        Microsoft {type} by segment, FY2022–FY2024 actual and FY2025–FY2029 projected.
+        aria-label={`Stacked bar chart of Microsoft ${type} by segment FY2022 through FY2030`}>
+        Microsoft {type} by segment, FY2022–FY2024 actual and FY2025–FY2030 projected.
       </canvas>
     </div>
   );
@@ -300,7 +300,7 @@ function InputPanel({ params, onChange }) {
       <SectionCard title="Margin &amp; Valuation" accent={ACCENT}>
         <SliderField label="GAAP net margin" id="netMargin" value={params.netMargin}
           min={25} max={50} tooltip={TOOLTIPS.netMargin} onChange={set('netMargin')} />
-        <SliderField label="FY2029 P/E multiple" id="peMultiple" value={params.peMultiple}
+        <SliderField label="FY2030 P/E multiple" id="peMultiple" value={params.peMultiple}
           min={15} max={50} unit="x" tooltip={TOOLTIPS.peMultiple} onChange={set('peMultiple')} />
         <NumberField label="Diluted shares" value={params.sharesB} min={6.5} max={8.0} step={0.05}
           suffix="B shares" tooltip={TOOLTIPS.sharesB} onChange={set('sharesB')} />
@@ -359,7 +359,7 @@ export default function MicrosoftPage() {
                   <span style={{ color: ACCENT }}>Growth Dashboard</span>
                 </h1>
                 <p style={{ fontSize: 14, color: 'var(--text3)', fontFamily: 'var(--mono)', maxWidth: 720, lineHeight: 1.6 }}>
-                  FY2022–FY2024 actuals · Projected FY2025–FY2029 · All figures in USD billions · Fiscal year ends June 30
+                  FY2022–FY2024 actuals · Projected FY2025–FY2030 · All figures in USD billions · Fiscal year ends June 30
                 </p>
               </div>
               <div style={{ maxWidth: 360, fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--text3)', lineHeight: 1.55, textAlign: 'right' }}>
@@ -372,30 +372,30 @@ export default function MicrosoftPage() {
         <main style={{ flex: 1, padding: '2rem 2.5rem', maxWidth: 1100, margin: '0 auto', width: '100%' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: '1.5rem' }}>
             <MetricCard label="FY2024 Revenue"   value={fmtUsdB(projections.total2024)}    sub="Actual · Form 10-K"              accent={ACCENT} />
-            <MetricCard label="FY2029 Revenue"   value={fmtUsdB(projections.total2029)}    sub={`${fmt(projections.cagr5y, 1)}% CAGR`} accent="var(--accent)" />
-            <MetricCard label="FY2029 Earnings"  value={fmtUsdB(projections.earnings2029)} sub={`${params.netMargin}% GAAP margin`} accent="var(--green)" />
-            <MetricCard label="FY2029 Valuation" value={fmtUsdB(projections.marketCap)}    sub={`${params.peMultiple}x P/E`}     accent="var(--pink)" />
-            <MetricCard label="Cloud Share FY2029" value={`${fmt(projections.cloudShare2029, 0)}%`} sub="of FY2029 revenue"       accent={SEGMENT_COLORS.cloud} />
-            <MetricCard label="FY2029 Share Price" value={fmtUsd(projections.sharePrice)}  sub={`EPS ${fmtUsd(projections.eps2029)}`} accent={ACCENT} />
+            <MetricCard label="FY2030 Revenue"   value={fmtUsdB(projections.total2030)}    sub={`${fmt(projections.cagr6y, 1)}% CAGR`} accent="var(--accent)" />
+            <MetricCard label="FY2030 Earnings"  value={fmtUsdB(projections.earnings2030)} sub={`${params.netMargin}% GAAP margin`} accent="var(--green)" />
+            <MetricCard label="FY2030 Valuation" value={fmtUsdB(projections.marketCap)}    sub={`${params.peMultiple}x P/E`}     accent="var(--pink)" />
+            <MetricCard label="Cloud Share FY2030" value={`${fmt(projections.cloudShare2030, 0)}%`} sub="of FY2030 revenue"       accent={SEGMENT_COLORS.cloud} />
+            <MetricCard label="FY2030 Share Price" value={fmtUsd(projections.sharePrice)}  sub={`EPS ${fmtUsd(projections.eps2030)}`} accent={ACCENT} />
           </div>
 
           <section style={{ background: `linear-gradient(135deg, var(--bg2) 0%, rgba(0,164,239,0.05) 100%)`, border: `1px solid rgba(0,164,239,0.28)`, borderRadius: 'var(--radius-lg)', padding: '1.6rem 2rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
             <div>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: ACCENT, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
-                FY2029 Projected Share Price
+                FY2030 Projected Share Price
               </div>
               <div style={{ fontSize: 'clamp(42px, 7vw, 66px)', fontWeight: 700, color: ACCENT, lineHeight: 1, marginBottom: 10 }}>
                 {fmtUsd(projections.sharePrice)}
               </div>
               <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--text3)' }}>
                 <span>{fmtUsdB(projections.marketCap)} market cap</span>
-                <span>{fmtUsdB(projections.earnings2029)} GAAP net income</span>
+                <span>{fmtUsdB(projections.earnings2030)} GAAP net income</span>
                 <span>{params.sharesB}B diluted shares</span>
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--text3)', textAlign: 'right' }}>
               <span style={{ color: `rgba(0,164,239,0.72)` }}>Adjust segment CAGRs, margin, and P/E below</span>
-              <span>{fmt(projections.cloudShare2029, 0)}% of FY2029 revenue from Intelligent Cloud</span>
+              <span>{fmt(projections.cloudShare2030, 0)}% of FY2030 revenue from Intelligent Cloud</span>
               <span>{params.peMultiple}x P/E on modeled GAAP net income</span>
             </div>
           </section>

@@ -221,6 +221,13 @@ export default function InputPanel({ params, onChange }) {
           onChange={val => set('rides2029')(val * 1_000_000)}
         />
         <NumberField
+          label="Rides in 2030"
+          value={params.rides2030 / 1_000_000}
+          step={50}
+          suffix="M rides"
+          onChange={val => set('rides2030')(val * 1_000_000)}
+        />
+        <NumberField
           label="Revenue per ride"
           value={params.revenuePerRide}
           step={0.25}
@@ -260,6 +267,13 @@ export default function InputPanel({ params, onChange }) {
           step={25}
           suffix="k robots"
           onChange={val => set('optimusSold2029')(val * 1_000)}
+        />
+        <NumberField
+          label="Robots sold in 2030"
+          value={params.optimusSold2030 / 1_000}
+          step={100}
+          suffix="k robots"
+          onChange={val => set('optimusSold2030')(val * 1_000)}
         />
         <NumberField
           label="Avg price per robot"

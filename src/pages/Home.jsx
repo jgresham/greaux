@@ -21,7 +21,6 @@ const companies = [
     logo: 'tesla',
     stats: [
       { label: '2024 Revenue', value: '$97.7B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },
@@ -34,7 +33,6 @@ const companies = [
     logo: 'spacex',
     stats: [
       { label: '2025 Revenue', value: '$18.7B e' },
-      { label: 'Projection through', value: '2030' },
     ],
     badge: '◇',
   },
@@ -60,7 +58,6 @@ const companies = [
     logo: 'amd',
     stats: [
       { label: '2024 Revenue', value: '$25.8B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },
@@ -73,7 +70,6 @@ const companies = [
     logo: 'nvidia',
     stats: [
       { label: 'FY2025 Revenue', value: '$130.5B' },
-      { label: 'Projection through', value: 'FY2030' },
     ],
     badge: '◆',
   },
@@ -99,7 +95,6 @@ const companies = [
     logo: 'apple',
     stats: [
       { label: 'FY2024 Revenue', value: '$391.0B' },
-      { label: 'Projection through', value: 'FY2029' },
     ],
     badge: '◆',
   },
@@ -112,7 +107,6 @@ const companies = [
     logo: 'microsoft',
     stats: [
       { label: 'FY2024 Revenue', value: '$245.1B' },
-      { label: 'Projection through', value: 'FY2029' },
     ],
     badge: '◆',
   },
@@ -125,7 +119,6 @@ const companies = [
     logo: 'google',
     stats: [
       { label: '2024 Revenue', value: '$350.0B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },
@@ -138,7 +131,6 @@ const companies = [
     logo: 'amazon',
     stats: [
       { label: '2024 Revenue', value: '$637.9B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },
@@ -151,7 +143,6 @@ const companies = [
     logo: 'asml',
     stats: [
       { label: '2024 Revenue', value: '€28.3B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },
@@ -164,7 +155,6 @@ const companies = [
     logo: 'tsmc',
     stats: [
       { label: '2024 Revenue', value: '$90.1B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },
@@ -177,7 +167,6 @@ const companies = [
     logo: 'robinhood',
     stats: [
       { label: '2024 Revenue', value: '$2.95B' },
-      { label: 'Projection through', value: '2029' },
     ],
     badge: '◆',
   },

@@ -11,7 +11,7 @@ import PageMeta, { PAGE_META } from '../components/PageMeta';
 Chart.register(...registerables);
 
 const ACCENT = '#CCFF00';
-const YEARS = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029];
+const YEARS = [2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030];
 const HIST_COUNT = 3;
 const FINAL_INDEX = YEARS.length - 1;
 
@@ -52,7 +52,7 @@ const TOOLTIPS = {
   interestCAGR:    "CAGR from CY2024 base of $1.11B. Earned on margin balances, stock lending, uninvested cash sweep (4.5%+ rates), and cash card program. Sensitive to Fed funds rate. 10% default assumes modest rate cuts and continued AUC growth. Source: Robinhood 10-K CY2024.",
   otherCAGR:       "CAGR from CY2024 base of $195M. Includes Robinhood Gold premium subscriptions ($5/mo, growing toward 3M+ subscribers), proxy/transfer agent fees, and cash card interchange. Fastest-growing in % terms but smallest in absolute size. Source: Robinhood 10-K CY2024.",
   netMargin:       "GAAP net margin. CY2024 was 47.8% ($1,411M / $2,951M) — exceptionally high due to crypto upswing and operating leverage. A normalized 25% reflects sustainable profitability as headcount and R&D investments resume. Source: Robinhood 10-K CY2024.",
-  peMultiple:      "P/E applied to modeled 2029 GAAP net income. Robinhood trades at a premium to traditional brokers (Schwab ~20x) but discount to high-growth fintech. 25x reflects mid-case for a maturing retail brokerage with crypto optionality. Source: Bloomberg consensus.",
+  peMultiple:      "P/E applied to modeled 2030 GAAP net income. Robinhood trades at a premium to traditional brokers (Schwab ~20x) but discount to high-growth fintech. 25x reflects mid-case for a maturing retail brokerage with crypto optionality. Source: Bloomberg consensus.",
   sharesB:         "Diluted shares (billions). CY2024 diluted weighted average shares: ~907.8M. Robinhood has been repurchasing shares alongside RSU dilution. Source: Robinhood 10-K CY2024.",
 };
 
@@ -82,7 +82,7 @@ const fmtUsdB = v => {
 };
 const fmtUsd = v => `$${fmt(v, v < 100 ? 2 : 0)}`;
 
-function projectCAGR(base, cagr, count = 5) {
+function projectCAGR(base, cagr, count = 6) {
   return Array.from({ length: count }, (_, i) =>
     Number((base * Math.pow(1 + cagr / 100, i + 1)).toFixed(3))
   );
@@ -111,15 +111,15 @@ function buildProjections(params) {
   );
 
   const total2024          = sumAt(revenue, 2);
-  const total2029          = sumAt(revenue, FINAL_INDEX);
-  const earnings2029       = sumAt(earnings, FINAL_INDEX);
-  const marketCap          = earnings2029 * params.peMultiple;
+  const total2030          = sumAt(revenue, FINAL_INDEX);
+  const earnings2030       = sumAt(earnings, FINAL_INDEX);
+  const marketCap          = earnings2030 * params.peMultiple;
   const sharePrice         = params.sharesB > 0 ? marketCap / params.sharesB : 0;
-  const eps2029            = params.sharesB > 0 ? earnings2029 / params.sharesB : 0;
-  const cagr5y             = total2024 > 0 ? (Math.pow(total2029 / total2024, 1 / 5) - 1) * 100 : 0;
-  const transactionShare29 = total2029 > 0 ? revenue.transaction[FINAL_INDEX] / total2029 * 100 : 0;
+  const eps2030            = params.sharesB > 0 ? earnings2030 / params.sharesB : 0;
+  const cagr6y             = total2024 > 0 ? (Math.pow(total2030 / total2024, 1 / 6) - 1) * 100 : 0;
+  const transactionShare29 = total2030 > 0 ? revenue.transaction[FINAL_INDEX] / total2030 * 100 : 0;
 
-  return { revenue, earnings, total2024, total2029, earnings2029, marketCap, sharePrice, eps2029, cagr5y, transactionShare29 };
+  return { revenue, earnings, total2024, total2030, earnings2030, marketCap, sharePrice, eps2030, cagr6y, transactionShare29 };
 }
 
 function makeDatasets(full, color, label) {
@@ -234,8 +234,8 @@ function StackedBarChart({ projections, type }) {
   return (
     <div style={{ position: 'relative', width: '100%', height: type === 'earnings' ? 310 : 360 }}>
       <canvas ref={canvasRef} role="img"
-        aria-label={`Stacked bar chart of Robinhood ${type} by category 2022 through 2029`}>
-        Robinhood {type} by category, 2022–2024 actual and 2025–2029 projected.
+        aria-label={`Stacked bar chart of Robinhood ${type} by category 2022 through 2030`}>
+        Robinhood {type} by category, 2022–2024 actual and 2025–2030 projected.
       </canvas>
     </div>
   );
@@ -308,7 +308,7 @@ function InputPanel({ params, onChange }) {
       <SectionCard title="Margin &amp; Valuation" accent={ACCENT}>
         <SliderField label="GAAP net margin" id="netMargin" value={params.netMargin}
           min={0} max={55} tooltip={TOOLTIPS.netMargin} onChange={set('netMargin')} />
-        <SliderField label="2029 P/E multiple" id="peMultiple" value={params.peMultiple}
+        <SliderField label="2030 P/E multiple" id="peMultiple" value={params.peMultiple}
           min={10} max={60} unit="x" tooltip={TOOLTIPS.peMultiple} onChange={set('peMultiple')} />
         <NumberField label="Diluted shares" value={params.sharesB} min={0.80} max={1.10} step={0.001}
           suffix="B shares" tooltip={TOOLTIPS.sharesB} onChange={set('sharesB')} />
@@ -368,7 +368,7 @@ export default function RobinhoodPage() {
                   <span style={{ color: ACCENT }}>Growth Dashboard</span>
                 </h1>
                 <p style={{ fontSize: 14, color: 'var(--text3)', fontFamily: 'var(--mono)', maxWidth: 720, lineHeight: 1.6 }}>
-                  2022–2024 actuals · Projected 2025–2029 · USD · Calendar year · First profitable year: 2024
+                  2022–2024 actuals · Projected 2025–2030 · USD · Calendar year · First profitable year: 2024
                 </p>
               </div>
               <div style={{ maxWidth: 360, fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--text3)', lineHeight: 1.55, textAlign: 'right' }}>
@@ -381,30 +381,30 @@ export default function RobinhoodPage() {
         <main style={{ flex: 1, padding: '2rem 2.5rem', maxWidth: 1100, margin: '0 auto', width: '100%' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: '1.5rem' }}>
             <MetricCard label="2024 Revenue"        value={fmtUsdB(projections.total2024)}         sub="Actual · Robinhood 10-K"               accent={ACCENT} />
-            <MetricCard label="2029 Revenue"         value={fmtUsdB(projections.total2029)}         sub={`${fmt(projections.cagr5y, 1)}% CAGR`}  accent="var(--accent)" />
-            <MetricCard label="2029 Earnings"        value={fmtUsdB(projections.earnings2029)}      sub={`${params.netMargin}% GAAP margin`}     accent="var(--green)" />
-            <MetricCard label="2029 Valuation"       value={fmtUsdB(projections.marketCap)}         sub={`${params.peMultiple}x P/E`}            accent="var(--pink)" />
-            <MetricCard label="Transaction Sh. 2029" value={`${fmt(projections.transactionShare29, 0)}%`} sub="of 2029 revenue"               accent={SEGMENT_COLORS.transaction} />
-            <MetricCard label="2029 Share Price"     value={fmtUsd(projections.sharePrice)}         sub={`EPS ${fmtUsd(projections.eps2029)}`}   accent={ACCENT} />
+            <MetricCard label="2030 Revenue"         value={fmtUsdB(projections.total2030)}         sub={`${fmt(projections.cagr6y, 1)}% CAGR`}  accent="var(--accent)" />
+            <MetricCard label="2030 Earnings"        value={fmtUsdB(projections.earnings2030)}      sub={`${params.netMargin}% GAAP margin`}     accent="var(--green)" />
+            <MetricCard label="2030 Valuation"       value={fmtUsdB(projections.marketCap)}         sub={`${params.peMultiple}x P/E`}            accent="var(--pink)" />
+            <MetricCard label="Transaction Sh. 2030" value={`${fmt(projections.transactionShare29, 0)}%`} sub="of 2030 revenue"               accent={SEGMENT_COLORS.transaction} />
+            <MetricCard label="2030 Share Price"     value={fmtUsd(projections.sharePrice)}         sub={`EPS ${fmtUsd(projections.eps2030)}`}   accent={ACCENT} />
           </div>
 
           <section style={{ background: 'linear-gradient(135deg, var(--bg2) 0%, rgba(204,255,0,0.05) 100%)', border: '1px solid rgba(204,255,0,0.28)', borderRadius: 'var(--radius-lg)', padding: '1.6rem 2rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
             <div>
               <div style={{ fontSize: 11, fontFamily: 'var(--mono)', color: ACCENT, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>
-                2029 Projected Share Price (USD)
+                2030 Projected Share Price (USD)
               </div>
               <div style={{ fontSize: 'clamp(42px, 7vw, 66px)', fontWeight: 700, color: ACCENT, lineHeight: 1, marginBottom: 10 }}>
                 {fmtUsd(projections.sharePrice)}
               </div>
               <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--text3)' }}>
                 <span>{fmtUsdB(projections.marketCap)} market cap</span>
-                <span>{fmtUsdB(projections.earnings2029)} GAAP net income</span>
+                <span>{fmtUsdB(projections.earnings2030)} GAAP net income</span>
                 <span>{params.sharesB}B diluted shares</span>
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 12, fontFamily: 'var(--mono)', color: 'var(--text3)', textAlign: 'right' }}>
               <span style={{ color: 'rgba(204,255,0,0.72)' }}>Adjust revenue CAGRs, margin, and P/E below</span>
-              <span>{fmt(projections.transactionShare29, 0)}% of 2029 revenue from transactions</span>
+              <span>{fmt(projections.transactionShare29, 0)}% of 2030 revenue from transactions</span>
               <span>{params.peMultiple}x P/E on modeled GAAP net income</span>
             </div>
           </section>

@@ -93,7 +93,7 @@ export default function TeslaPage() {
                 <span style={{ color: 'var(--accent)' }}>Growth Dashboard</span>
               </h1>
               <p style={{ fontSize: 14, color: 'var(--text3)', fontFamily: 'var(--mono)' }}>
-                Historical 2020–2024 · Projected 2025–2029 · All figures in USD billions
+                Historical 2020–2024 · Projected 2025–2030 · All figures in USD billions
               </p>
             </div>
             <div style={{
@@ -116,11 +116,11 @@ export default function TeslaPage() {
           marginBottom: '2rem',
         }}>
           <MetricCard label="2024 Revenue" value={`$${fmt(proj.total2024, 1)}B`} sub="Actual · all segments" accent="var(--blue)" />
-          <MetricCard label="2029 Projected" value={`$${fmt(proj.total2029, 1)}B`} sub="Based on your assumptions" accent="var(--accent)" tooltip={TOOLTIPS.total2029} />
-          <MetricCard label="2029 Valuation" value={fmtValuation(proj.marketCapB)} sub={params.valuationMethod === 'ps' ? `${params.psRatio}x revenue` : `${params.peRatio}x earnings`} accent="var(--amber)" tooltip={TOOLTIPS.sharePrice} />
-          <MetricCard label="5-Year CAGR" value={`${fmt(proj.cagr5y, 1)}%`} sub="2024 → 2029" accent="var(--green)" tooltip={TOOLTIPS.cagr} />
-          <MetricCard label="Robotaxi 2029" value={`$${fmt(proj.roboFull[9], 1)}B`} sub="Platform revenue" accent="var(--pink)" />
-          <MetricCard label="Optimus 2029" value={`$${fmt(proj.optimusFull[9], 1)}B`} sub="Humanoid revenue" accent={SEGMENT_COLORS.optimus} />
+          <MetricCard label="2030 Projected" value={`$${fmt(proj.total2030, 1)}B`} sub="Based on your assumptions" accent="var(--accent)" tooltip={TOOLTIPS.total2030} />
+          <MetricCard label="2030 Valuation" value={fmtValuation(proj.marketCapB)} sub={params.valuationMethod === 'ps' ? `${params.psRatio}x revenue` : `${params.peRatio}x earnings`} accent="var(--amber)" tooltip={TOOLTIPS.sharePrice} />
+          <MetricCard label="6-Year CAGR" value={`${fmt(proj.cagr6y, 1)}%`} sub="2024 → 2030" accent="var(--green)" tooltip={TOOLTIPS.cagr} />
+          <MetricCard label="Robotaxi 2030" value={`$${fmt(proj.roboFull[10], 1)}B`} sub="Platform revenue" accent="var(--pink)" />
+          <MetricCard label="Optimus 2030" value={`$${fmt(proj.optimusFull[10], 1)}B`} sub="Humanoid revenue" accent={SEGMENT_COLORS.optimus} />
         </div>
 
         {/* Prominent share price projection */}
@@ -141,7 +141,7 @@ export default function TeslaPage() {
               fontSize: 11, fontFamily: 'var(--mono)', color: 'var(--accent)',
               textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10,
             }}>
-              2029 Projected Share Price
+              2030 Projected Share Price
             </div>
             <div style={{
               fontSize: 'clamp(48px, 7vw, 72px)',
@@ -151,7 +151,7 @@ export default function TeslaPage() {
               letterSpacing: '-0.03em',
               marginBottom: 10,
             }}>
-              ${fmt(proj.sharePrice2029)}
+              ${fmt(proj.sharePrice2030)}
             </div>
             <div style={{
               display: 'flex', gap: 20, flexWrap: 'wrap',
@@ -160,7 +160,7 @@ export default function TeslaPage() {
               <span>{psLabel}</span>
               <span>{peLabel}</span>
               <span>Mkt Cap ${fmt(mktCapT, 1)}T</span>
-              <span>Net Income ${fmt(proj.earnings2029, 1)}B</span>
+              <span>Net Income ${fmt(proj.earnings2030, 1)}B</span>
             </div>
           </div>
           <div style={{
@@ -270,7 +270,7 @@ export default function TeslaPage() {
               stacked
               unit="M"
               decimals={2}
-              ariaLabel="Tesla annual vehicle deliveries by product group from 2020 through 2029, with 2026 through 2029 projected"
+              ariaLabel="Tesla annual vehicle deliveries by product group from 2020 through 2030, with 2026 through 2030 projected"
               datasets={[
                 {
                   label: 'Model 3/Y',
@@ -310,7 +310,7 @@ export default function TeslaPage() {
               labels={OPERATING_METRICS.projectionYears}
               unit=" GWh"
               decimals={1}
-              ariaLabel="Tesla annual energy storage deployments in gigawatt-hours from 2020 through 2029, with 2026 through 2029 projected"
+              ariaLabel="Tesla annual energy storage deployments in gigawatt-hours from 2020 through 2030, with 2026 through 2030 projected"
               datasets={[
                 {
                   label: 'Storage deployed',

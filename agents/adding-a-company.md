@@ -26,7 +26,7 @@ greaux is a company growth projection and visualization tool. New company or pro
 7. Make the input fields update both charts and all relevant summary metrics.
 8. Include a projected share price for public companies and/or a projected company valuation for every company page.
 9. Add two additional operating-metric charts below the collapsed input section, such as unit sales, subscribers, deliveries, deployment volume, store count, bookings, launch cadence, or other important non-financial scale indicators.
-10. Every time-series chart on greaux, including revenue, profit/earnings, and operating-metric charts, should include 3-5 future projection data points beyond the latest actual or estimated period.
+10. Every time-series chart on greaux, including revenue, profit/earnings, and operating-metric charts, should project through 2030. Use `projectCAGR(base, cagr, count = 6)` with `count = 6` to generate 6 projected years (2025–2030) from a 2024 base. Historical years should be `[2022, 2023, 2024]` (3 actuals) and projected years `[2025, 2026, 2027, 2028, 2029, 2030]` (6 projections).
 11. Add company-specific SEO and sharing metadata.
 12. Store only known, officially reported historical data in `financial-data/<company-folder>/known-revenue-and-product-numbers.md`.
 13. Store unknown or estimated app default projection assumptions and resulting default outputs in `financial-data/<company-folder>/projected-financial-data.md`.
@@ -119,7 +119,7 @@ This file is for unknown, estimated, modeled, and projection-default data. It sh
 - Add the company to the `companies` array in `src/pages/Home.jsx`.
 - Keep the page visually consistent with existing company dashboards.
 - Include bar charts for both revenue and profit/earnings.
-- Every time-series chart on greaux should include 3-5 future projection data points beyond the latest actual or estimated period.
+- Every time-series chart on greaux should project through 2030 (6 projected years from a 2024 base).
 - Visually distinguish actual or known values from projected values, such as lighter bars, dashed outlines, projected labels, or a clear legend.
 - For bar-chart legends, put the descriptive wording on the actual or known series label, and label the matching transparent/dashed projection series simply `projected`.
 - Use stacked bars when showing product or segment mix.
